@@ -1,13 +1,18 @@
+const hangmanCanvas = document.getElementById('hangmanCanvas');
+const easyButton = document.querySelector(".easybutton")
+const hardButton = document.querySelector(".hardbutton")
+const phrasesButton = document.querySelector(".phrasesbutton")
+
 const hardWordList = ['triangle', 'observation', 'circumstance', 'sensitive', 'laundry', 'wording', 'fabricate', 'charter', 'sentiment', 'exclusive', 'parachute', 'mixture']
 const easyWordList = []
 const phraseList = []
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 't', 'u', 'v', 'w', 'x', 'y', 'z']
+const numberLetters = []
 
 
 function drawBoard() {
-    var hangmanCanvas = document.getElementById('hangmanCanvas');
     if (hangmanCanvas.getContext) {
         var ctx = hangmanCanvas.getContext('2d');
         ctx.beginPath();
@@ -35,13 +40,6 @@ function drawBoard() {
         ctx.lineTo(175, 300)   
         ctx.moveTo(200, 260)   //Left Leg 
         ctx.lineTo(225, 300)
-        // ctx.lineTo(245, 375)  //
-        // ctx.moveTo(245, 375)   //
-        // ctx.lineTo(50, 375)  //
-        // ctx.moveTo(245, 375)   //
-        // ctx.lineTo(50, 375)  //
-        // ctx.moveTo(50, 375)   //
-        // ctx.lineTo(50, 370)  //
         ctx.moveTo(200,120)  //Rope
         ctx.lineTo(200, 65)
         ctx.moveTo(200,65)   //overhead bar
@@ -72,6 +70,43 @@ function drawBoard() {
         ctx.lineTo(50, 375)  //
         ctx.moveTo(50, 375)   //
         ctx.lineTo(50, 370)  //
+        // ctx.moveTo(25, 435)   //Letter Lines 
+        // ctx.lineTo(55, 435)  //
+        // ctx.moveTo(65, 435)   //Letter Lines
+        // ctx.lineTo(95, 435)
+        // ctx.moveTo(105, 435)   //Letter Lines
+        // ctx.lineTo(135, 435)
+        // ctx.moveTo(145, 435)   //Letter Lines
+        // ctx.lineTo(175, 435)
+        // ctx.moveTo(185, 435)   //Letter Lines 
+        // ctx.lineTo(215, 435)  //
+        // ctx.moveTo(225, 435)   //Letter Lines
+        // ctx.lineTo(255, 435)
+        // ctx.moveTo(265, 435)   //Letter Lines
+        // ctx.lineTo(295, 435)
+        // ctx.moveTo(305, 435)   //Letter Lines
+        // ctx.lineTo(335, 435)
+        // ctx.moveTo(345, 435)   //Letter Lines
+        // ctx.lineTo(375, 435)
+        // ctx.moveTo(25, 495)   //Letter Lines 
+        // ctx.lineTo(55, 495)  //
+        // ctx.moveTo(65, 495)   //Letter Lines
+        // ctx.lineTo(95, 495)
+        // ctx.moveTo(105, 495)   //Letter Lines
+        // ctx.lineTo(135, 495)
+        // ctx.moveTo(145, 495)   //Letter Lines
+        // ctx.lineTo(175, 495)
+        // ctx.moveTo(185, 495)   //Letter Lines 
+        // ctx.lineTo(215, 495)  //
+        // ctx.moveTo(225, 495)   //Letter Lines
+        // ctx.lineTo(255, 495)
+        // ctx.moveTo(265, 495)   //Letter Lines
+        // ctx.lineTo(295, 495)
+        // ctx.moveTo(305, 495)   //Letter Lines
+        // ctx.lineTo(335, 495)
+        // ctx.moveTo(345, 495)   //Letter Lines
+        // ctx.lineTo(375, 495)
+        
         ctx.stroke();
            
   }
