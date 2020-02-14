@@ -2,13 +2,19 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
     
 }
 .underlineletters-container {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    
+
 }
 .underline {
     padding: 10px;
+}
+
+    
 }

@@ -2,6 +2,9 @@ const hangmanCanvas = document.getElementById('hangmanCanvas');
 const easyButton = document.querySelector(".easybutton")
 const hardButton = document.querySelector(".hardbutton")
 const phrasesButton = document.querySelector(".phrasesbutton")
+const underlineContainer = document.querySelectorAll(".underlineletters-container div")
+const letterContainer = document.querySelectorAll(".letter-container div")
+console.log(underlineContainer)
 
 const hardWordList = ['triangle', 'observation', 'circumstance', 'sensitive', 'laundry', 'wording', 'fabricate', 'charter', 'sentiment', 'exclusive', 'parachute', 'mixture']
 const easyWordList = []
@@ -9,8 +12,37 @@ const phraseList = []
 const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
 't', 'u', 'v', 'w', 'x', 'y', 'z']
-const numberLetters = []
+const numberLettersPicked = []
 
+easyButton.addEventListener('click', () => {
+    console.log('Easy Button')
+})
+hardButton.addEventListener('click', () => {
+    console.log('Hard Button')
+})
+phrasesButton.addEventListener('click', () => {
+    console.log('Hard Button')
+})
+letterContainer.forEach(letter => {
+     letter.addEventListener('click', checkForLetter)
+});
+letterContainer.forEach(letterStyle => {
+    letterStyle.style.backgroundColor ='blue'
+    letterStyle.style.border = '2px solid black'
+    letterStyle.style.padding = '12px'
+    letterStyle.style.width = '8px'
+    letterStyle.style.margin = '4px'
+})
+
+function checkForLetter() {
+    letterContainer.forEach(letterSelected => {
+        this.style.backgroundColor ='Black'
+        
+
+    })
+
+    console.log('check for letter')
+}
 
 function drawBoard() {
     if (hangmanCanvas.getContext) {
