@@ -1,31 +1,14 @@
+
+
+
 const hangmanCanvas = document.getElementById('hangmanCanvas');
 const easyButton = document.querySelector(".easybutton")
 const hardButton = document.querySelector(".hardbutton")
 const phrasesButton = document.querySelector(".phrasesbutton")
-const underlineContainer = document.querySelectorAll(".underlineletters-container div")
+const underlineContainer = document.querySelector(".underlineletters-container")
 const letterContainer = document.querySelectorAll(".letter-container div")
 console.log(underlineContainer)
 
-const hardWordList = ['triangle', 'observation', 'circumstance', 'sensitive', 'laundry', 'wording', 'fabricate', 'charter', 'sentiment', 'exclusive', 'parachute', 'mixture']
-const easyWordList = []
-const phraseList = []
-const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-'t', 'u', 'v', 'w', 'x', 'y', 'z']
-const numberLettersPicked = []
-
-easyButton.addEventListener('click', () => {
-    console.log('Easy Button')
-})
-hardButton.addEventListener('click', () => {
-    console.log('Hard Button')
-})
-phrasesButton.addEventListener('click', () => {
-    console.log('Hard Button')
-})
-letterContainer.forEach(letter => {
-     letter.addEventListener('click', checkForLetter)
-});
 letterContainer.forEach(letterStyle => {
     letterStyle.style.backgroundColor ='blue'
     letterStyle.style.border = '2px solid black'
@@ -33,15 +16,95 @@ letterContainer.forEach(letterStyle => {
     letterStyle.style.width = '8px'
     letterStyle.style.margin = '4px'
 })
+const hardWordList = ['triangle', 'observation', 'circumstance', 'sensitive', 'laundry', 'wording', 'fabricate', 'charter', 'sentiment', 'exclusive', 'parachute', 'mixture','restaurant','violation','straighten','temporary','horoscope','transform','president','destruction']
+const easyWordList = ['route','cower','final','ditch','trunk','orbit','yearn','self','swop','doubt','lake','feign','pest','aware','bet','blade','cabin','lease','wagon','work','swim']
+const phraseList = ['Quick and Dirty','In a Pickle',"Man of Few Words","A Chip on Your Shoulder",'I Smell a Rat',"Tough It Out",'Ugly Duckling',"Fool's Gold"]
+const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
+'t', 'u', 'v', 'w', 'x', 'y', 'z']
+const numberLettersPicked = []
+let wordSelected = []
+let correctGuess = 0;
+let incorrectGuess = 0;
+const ul1 = document.querySelector("#ul1")
+const underlinedText = document.querySelector('.underlineletters-container')
+// let blankSpaces = ""
+easyButton.addEventListener('click',easyWord)
+function easyWord() {
+    let randomEasyWord = easyWordList[Math.floor(Math.random() * easyWordList.length)]
+    wordSelected = randomEasyWord.split("");
+    // for (let i = 0; i < randomEasyWord.length; i++) {
+    //     var x = randomEasyWord.charAt(i).toUpperCase();
+        for (i = 0; i < wordSelected.length; i++) {
+            console.log(wordSelected.length)
+            letter = document.createElement('li')
+            letter.setAttribute('class', 'underline')
+            letter.innerHTML = wordSelected[i].toUpperCase()
+            underlinedText.appendChild(letter)
+            
+        // if (x === " " || x === "/'") {
+        //   blankSpaces += x;
+        // } else {
+        //   blankSpaces += "_";
+        // }
+        // }
+        // document.getElementById("blankSpaces").innerHTML = blankSpaces;
+        // underlinedText.insertAdjacentHTML('beforeend', x);
+      }
+      //wordSelected = randomEasyWord
+      //document.getElementById("underline").innerHTML = blankSpaces;
+    
+
+    console.log(randomEasyWord)
+    //for (let i = 0; i < randomEasyWord.length; i++) {
+    //   wordSelected[i] = '_'
+    //}
+    console.log(wordSelected)
+    console.log(randomEasyWord)
+    console.log(wordSelected)
+}
+hardButton.addEventListener('click', () => {
+    console.log('Hard Button')
+    let randomHardWord = hardWordList[Math.floor(Math.random() * hardWordList.length)]
+    wordSelected = randomHardWord.split("");
+    console.log(randomHardWord)
+    
+    console.log(wordSelected)
+})
+// phrasesButton.addEventListener('click', () => {
+//     console.log('Hard Button')
+//     let randomPhrase = phraseList[Math.floor(Math.random() * phraseList.length)]
+//     wordSelected = randomPhrase.split("");
+//     console.log(randomPhrase)
+//     // for (let i = 0; i < randomPhrase.length; i++) {
+//     //     wordSelected[i] = '_'
+//     // }
+//     console.log(wordSelected)
+// })
+letterContainer.forEach(letter => {
+     letter.addEventListener('click', checkForLetter)
+
+//let randomEasyWord = easyWordList[Math.floor(Math.random() * easyWordList.////length)]
+
+
+});
 
 function checkForLetter() {
     letterContainer.forEach(letterSelected => {
-        this.style.backgroundColor ='Black'
+        this.style.backgroundColor = 'white'
+        this.style.border = ""
+        this.style.color = 'white'
+        console.log(this.innerText)
         
+    for (let j = 0; j < wordSelected.length; j++) {
+        if (wordSelected.includes('this')) {
+            this.style.color = "black"
+        }
+    }  
 
     })
 
-    console.log('check for letter')
+    console.log(wordSelected)
 }
 
 function drawBoard() {
