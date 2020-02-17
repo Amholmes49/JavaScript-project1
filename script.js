@@ -128,7 +128,7 @@ let answerWord = []
 let correctGuess = 0;
 let incorrectGuess = 0;
 const ul1 = document.querySelector("#ul1")
-const underlinedText = document.querySelector('.underlineletters-container')
+const underlinedText = document.querySelector('#underlinelist')
 // let blankSpaces = ""
 easyButton.addEventListener('click',easyWord)
 function easyWord() {
@@ -203,23 +203,58 @@ letterContainer.forEach(letter => {
 });
 
 function checkForLetter() {
+    underLineList = document.getElementById('underlinelist')
+    listItems = underLineList.getElementsByTagName('li')
+    //console.log(listItems.length)
     letterContainer.forEach(letterSelected => {
         this.style.backgroundColor = 'white'
         this.style.border = ""
         this.style.color = 'white'
-        underLineList = document.getElementById('underlinelist')
-        listItems = underLineList.getElementsByTagName('li')
+    })
+        for (j = 0; j < listItems.length; j++) {
+           listLetters = listItems[j].innerText
+           console.log(listLetters)
+           console.log(this.innerText)
+           if (this.innerText === listLetters){
+                listItems[j].style.color = 'black';
+                correctGuess++
+           } else {
+               incorrectGuess++
+           }
+           console.log(incorrectGuess)    
+    // function checkGameStatus
+    //     if (incorrectGuess === 6){
+    //                alert('You Lose, Please try again')
+    //            }
+    //        }
+           
+        //  a = listItems[j].getElementsByTagName("li")[0];
+        //     console.log(a)
+            // txtValue = a.textContent || a.innerText;
+            // if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            //   li[i].style.display = "";
+            // } else {
+            //   li[i].style.display = "none";
+            // }
+        //   }
+        }
+    
+
+
+
+
     
         
         
         // ul = document.getElementsByClassName('underlineletterslist')
         // li = ul.querySelectorAll('.underline')
-    })
-    console.log(underlineContainer)
-    console.log(underLineList)
-    console.log(listItems)
-
     
+    //console.log(underlineContainer)
+    //console.log(underLineList)
+    //console.log(listItems)
+    //console.log(listItems.length)
+
+}
     //console.log(ul)
         //console.log(underlinedTextList.length)
         //console.log(li)
@@ -231,7 +266,7 @@ function checkForLetter() {
     //     }
     
 
-    }
+    
 
     //console.log(wordSelected)
 
