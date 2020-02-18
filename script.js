@@ -146,6 +146,8 @@ let correctLetters = 0;
 let incorrectLetter = 0;
 let incorrectGuess = 0;
 let guess = false
+let blankSpecialChar = 0
+//let specialChar = 0
 const ul1 = document.querySelector("#ul1")
 const underlinedText = document.querySelector('#underlinelist')
 const gameStatus = document.querySelector('.gameStatus')
@@ -162,8 +164,9 @@ function easyWord() {
             letter.setAttribute('class', 'underline')
             letter.innerHTML = wordSelected[i].toUpperCase()
             underlinedText.appendChild(letter)
+            
             //console.log(underlinedText)
-            underlinedTextList = document.querySelector('.underlineletters-container .underline li')
+            //underlinedTextList = document.querySelector('.underlineletters-container .underline li')
 
       }
       //console.log(underlinedTextList.innerHTML)
@@ -176,23 +179,50 @@ function easyWord() {
     //console.log(wordSelected)
 }
 hardButton.addEventListener('click', () => {
-    console.log('Hard Button')
+    //console.log('Hard Button')
     let randomHardWord = hardWordList[Math.floor(Math.random() * hardWordList.length)]
     wordSelected = randomHardWord.split("");
+    for (i = 0; i < wordSelected.length; i++) {
+        console.log(wordSelected.length)
+        letter = document.createElement('li')
+        letter.setAttribute('class', 'underline')
+        letter.innerHTML = wordSelected[i].toUpperCase()
+        underlinedText.appendChild(letter)
+        //console.log(underlinedText)
+        //underlinedTextList = document.querySelector('.underlineletters-container .underline li')
+
+  }
     console.log(randomHardWord)
     
     console.log(wordSelected)
 })
-// phrasesButton.addEventListener('click', () => {
-//     console.log('Hard Button')
-//     let randomPhrase = phraseList[Math.floor(Math.random() * phraseList.length)]
-//     wordSelected = randomPhrase.split("");
-//     console.log(randomPhrase)
-//     // for (let i = 0; i < randomPhrase.length; i++) {
-//     //     wordSelected[i] = '_'
-//     // }
-//     console.log(wordSelected)
-// })
+phrasesButton.addEventListener('click', () => {
+    //console.log('Phrase Button')
+     let randomPhrase = phraseList[Math.floor(Math.random() * phraseList.length)]
+     wordSelected = randomPhrase.split("");
+     for (i = 0; i < wordSelected.length; i++) {
+        console.log(wordSelected.length)
+        letter = document.createElement('li')
+        letter.setAttribute('class', 'underline')
+        letter.innerHTML = wordSelected[i].toUpperCase()
+        underlinedText.appendChild(letter)
+        if (wordSelected[i] === " "){
+            blankSpecialChar++    
+        }
+        if (wordSelected[i] === "'"){
+            blankSpecialChar++ 
+            letter.style.color = 'black'   
+        }
+        
+        //console.log(underlinedText)
+        //underlinedTextList = document.querySelector('.underlineletters-container .underline li')
+
+  }
+    console.log(letter[i]) 
+    console.log(randomPhrase)
+     console.log(blankSpecialChar)
+     console.log(wordSelected)
+})
 letterContainer.forEach(letter => {
      letter.addEventListener('click', checkForLetter)
 
@@ -201,7 +231,7 @@ letterContainer.forEach(letter => {
 
 });
 function checkGameStatus(){
-    if (correctLetters === wordSelected.length){
+    if (correctLetters === wordSelected.length - blankSpecialChar){
         gameStatus.innerText = 'You Win'
         letterContainer.forEach(remove => {
             remove.removeEventListener('click', checkForLetter)
