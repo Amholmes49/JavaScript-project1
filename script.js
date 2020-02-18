@@ -49,7 +49,7 @@ function drawBoard() {
         ctx.stroke();
     }
 }
-function canvasHead(){ 
+function Head(){ 
         if (hangmanCanvas.getContext) {
         var ctx = hangmanCanvas.getContext('2d');
         ctx.beginPath();  
@@ -62,27 +62,69 @@ function canvasHead(){
         ctx.arc(215, 140, 3, 0, Math.PI * 2, true);  // Right eye
         ctx.stroke();
     } 
-    function rightArm() {
+}
+function rightArm() {
+    if (hangmanCanvas.getContext) {
+        var ctx = hangmanCanvas.getContext('2d');
+        ctx.beginPath();  
         ctx.moveTo(200, 180) 
-    }  //Right Arm
-        // ctx.lineTo(175, 220)   
-        // ctx.moveTo(200, 180)   //Left Arm
-        // ctx.lineTo(225, 220)  
-        // ctx.moveTo(200, 180)   //chest Line
-        // ctx.lineTo(200, 260)  
-        // ctx.moveTo(200, 260)   //Right Leg
-        // ctx.lineTo(175, 300)   
-        // ctx.moveTo(200, 260)   //Left Leg 
-        // ctx.lineTo(225, 300)
-        // ctx.moveTo(200,120)  //Rope
-        // ctx.lineTo(200, 65)
+        ctx.lineTo(175, 220)
+        ctx.stroke();
+    } 
+}  
+function leftArm() {
+    if (hangmanCanvas.getContext) {
+        var ctx = hangmanCanvas.getContext('2d');
+        ctx.beginPath();  
+        ctx.moveTo(200, 180)   
+        ctx.lineTo(225, 220)
+        ctx.stroke();
+    } 
+}  
+function chest() {
+    if (hangmanCanvas.getContext) {
+        var ctx = hangmanCanvas.getContext('2d');
+        ctx.beginPath();  
+        ctx.moveTo(200, 180)   //chest Line
+        ctx.lineTo(200, 260)
+        ctx.stroke();
+    } 
+}          
+function rightLeg() {
+    if (hangmanCanvas.getContext) {
+        var ctx = hangmanCanvas.getContext('2d');
+        ctx.beginPath();  
+        ctx.moveTo(200, 260)   //Right Leg
+        ctx.lineTo(175, 300)
+        ctx.stroke();
+    } 
+}          
+function leftLeg() {
+    if (hangmanCanvas.getContext) {
+        var ctx = hangmanCanvas.getContext('2d');
+        ctx.beginPath();  
+        ctx.moveTo(200, 260)   //Left Leg 
+        ctx.lineTo(225, 300)
+        ctx.stroke();
+    } 
+} 
+function rope() {
+    if (hangmanCanvas.getContext) {
+        var ctx = hangmanCanvas.getContext('2d');
+        ctx.beginPath();  
+        ctx.moveTo(200,120)  //Rope
+        ctx.lineTo(200, 65)
+        ctx.stroke();
+    } 
+}                          
         
            
   
 
 
 drawBoard()
-canvasHead()
+// canvasHead()
+// rightArm()
 
 letterContainer.forEach(letterStyle => {
     letterStyle.style.backgroundColor ='blue'
@@ -113,8 +155,7 @@ easyButton.addEventListener('click',easyWord)
 function easyWord() {
     let randomEasyWord = easyWordList[Math.floor(Math.random() * easyWordList.length)]
     wordSelected = randomEasyWord.split("");
-    // for (let i = 0; i < randomEasyWord.length; i++) {
-    //     var x = randomEasyWord.charAt(i).toUpperCase();
+    
         for (i = 0; i < wordSelected.length; i++) {
             console.log(wordSelected.length)
             letter = document.createElement('li')
@@ -130,11 +171,7 @@ function easyWord() {
       //document.getElementById("underline").innerHTML = blankSpaces;
     
 
-    //console.log(underlinedText)
-    //for (let i = 0; i < randomEasyWord.length; i++) {
-    //   wordSelected[i] = '_'
-    //}
-    //console.log(wordSelected)
+    
     console.log(randomEasyWord)
     //console.log(wordSelected)
 }
@@ -208,48 +245,40 @@ function checkForLetter() {
         incorrectGuess++
     }
     guess = false
-    
+    if (incorrectGuess === 1){
+        rope()
+    }
+    if (incorrectGuess === 2){
+        Head()
+    }
+    if (incorrectGuess === 3){
+        rightArm()
+    }
+    if (incorrectGuess === 4){
+        leftArm()
+    }
+    if (incorrectGuess === 5){
+        chest()
+    }
+    if (incorrectGuess === 6){
+        rightLeg()
+    }
+    if (incorrectGuess === 7){
+        leftLeg()
+    }
     console.log(incorrectGuess)
     checkGameStatus()
 }
 
-}
-    
-// function guess (){
-//     if ()
-// }
-    
-        
 
-        // console.log(correctGuess)
-        // console.log(incorrectGuess)
+    
+
 
     
                    
                
                 
-           //} if (this.innerText !== listLetters){
-                //incorrectGuess++
-               
-        
-          
-       
-    // function checkGameStatus
-    //     if (incorrectGuess === 6){
-    //                alert('You Lose, Please try again')
-    //            }
-    //        }
-           
-        //  a = listItems[j].getElementsByTagName("li")[0];
-        //     console.log(a)
-            // txtValue = a.textContent || a.innerText;
-            // if (txtValue.toUpperCase().indexOf(filter) > -1) {
-            //   li[i].style.display = "";
-            // } else {
-            //   li[i].style.display = "none";
-            // }
-        //   }
-       
+   
     
 
 
@@ -258,29 +287,7 @@ function checkForLetter() {
     
         
         
-        // ul = document.getElementsByClassName('underlineletterslist')
-        // li = ul.querySelectorAll('.underline')
     
-    //console.log(underlineContainer)
-    //console.log(underLineList)
-    //console.log(listItems)
-    //console.log(listItems.length)
-
-
-    //console.log(ul)
-        //console.log(underlinedTextList.length)
-        //console.log(li)
-
-    
-    // for (let j = 0; j < wordSelected.length; j++) {
-    //     if (wordSelected.includes(this.innerText)) {
-    //         this.style.color = "black"
-    //     }
-    
-
-    
-
-    //console.log(wordSelected)
 
 
 
