@@ -17,26 +17,6 @@ function drawBoard() {
         //ctx.fill();
         //ctx.fillRect(25, 25, 100, 100);
         ctx.beginPath();
-        ctx.arc(200, 150, 30, 0, Math.PI * 2, true); // Outer circle
-        ctx.moveTo(222, 150);
-        ctx.arc(200, 150, 22, 0, Math.PI, false);  // Mouth (clockwise)
-        ctx.moveTo(188, 140);
-        ctx.arc(185, 140, 3, 0, Math.PI * 2, true);  // Left eye
-        ctx.moveTo(218, 140);
-        ctx.arc(215, 140, 3, 0, Math.PI * 2, true);  // Right eye
-        ctx.stroke();
-        ctx.moveTo(200, 180)   //Right Arm
-        ctx.lineTo(175, 220)   
-        ctx.moveTo(200, 180)   //Left Arm
-        ctx.lineTo(225, 220)  
-        ctx.moveTo(200, 180)   //chest Line
-        ctx.lineTo(200, 260)  
-        ctx.moveTo(200, 260)   //Right Leg
-        ctx.lineTo(175, 300)   
-        ctx.moveTo(200, 260)   //Left Leg 
-        ctx.lineTo(225, 300)
-        ctx.moveTo(200,120)  //Rope
-        ctx.lineTo(200, 65)
         ctx.moveTo(200,65)   //overhead bar
         ctx.lineTo(90, 65)   //
         ctx.moveTo(200,65)   //
@@ -65,49 +45,44 @@ function drawBoard() {
         ctx.lineTo(50, 375)  //
         ctx.moveTo(50, 375)   //
         ctx.lineTo(50, 370)  //
-        // ctx.moveTo(25, 435)   //Letter Lines 
-        // ctx.lineTo(55, 435)  //
-        // ctx.moveTo(65, 435)   //Letter Lines
-        // ctx.lineTo(95, 435)
-        // ctx.moveTo(105, 435)   //Letter Lines
-        // ctx.lineTo(135, 435)
-        // ctx.moveTo(145, 435)   //Letter Lines
-        // ctx.lineTo(175, 435)
-        // ctx.moveTo(185, 435)   //Letter Lines 
-        // ctx.lineTo(215, 435)  //
-        // ctx.moveTo(225, 435)   //Letter Lines
-        // ctx.lineTo(255, 435)
-        // ctx.moveTo(265, 435)   //Letter Lines
-        // ctx.lineTo(295, 435)
-        // ctx.moveTo(305, 435)   //Letter Lines
-        // ctx.lineTo(335, 435)
-        // ctx.moveTo(345, 435)   //Letter Lines
-        // ctx.lineTo(375, 435)
-        // ctx.moveTo(25, 495)   //Letter Lines 
-        // ctx.lineTo(55, 495)  //
-        // ctx.moveTo(65, 495)   //Letter Lines
-        // ctx.lineTo(95, 495)
-        // ctx.moveTo(105, 495)   //Letter Lines
-        // ctx.lineTo(135, 495)
-        // ctx.moveTo(145, 495)   //Letter Lines
-        // ctx.lineTo(175, 495)
-        // ctx.moveTo(185, 495)   //Letter Lines 
-        // ctx.lineTo(215, 495)  //
-        // ctx.moveTo(225, 495)   //Letter Lines
-        // ctx.lineTo(255, 495)
-        // ctx.moveTo(265, 495)   //Letter Lines
-        // ctx.lineTo(295, 495)
-        // ctx.moveTo(305, 495)   //Letter Lines
-        // ctx.lineTo(335, 495)
-        // ctx.moveTo(345, 495)   //Letter Lines
-        // ctx.lineTo(375, 495)
         
         ctx.stroke();
-           
-  }
+    }
 }
+function canvasHead(){ 
+        if (hangmanCanvas.getContext) {
+        var ctx = hangmanCanvas.getContext('2d');
+        ctx.beginPath();  
+        ctx.arc(200, 150, 30, 0, Math.PI * 2, true); // Outer circle
+        ctx.moveTo(222, 150);
+        ctx.arc(200, 150, 22, 0, Math.PI, false);  // Mouth (clockwise)
+        ctx.moveTo(188, 140);
+        ctx.arc(185, 140, 3, 0, Math.PI * 2, true);  // Left eye
+        ctx.moveTo(218, 140);
+        ctx.arc(215, 140, 3, 0, Math.PI * 2, true);  // Right eye
+        ctx.stroke();
+    } 
+    function rightArm() {
+        ctx.moveTo(200, 180) 
+    }  //Right Arm
+        // ctx.lineTo(175, 220)   
+        // ctx.moveTo(200, 180)   //Left Arm
+        // ctx.lineTo(225, 220)  
+        // ctx.moveTo(200, 180)   //chest Line
+        // ctx.lineTo(200, 260)  
+        // ctx.moveTo(200, 260)   //Right Leg
+        // ctx.lineTo(175, 300)   
+        // ctx.moveTo(200, 260)   //Left Leg 
+        // ctx.lineTo(225, 300)
+        // ctx.moveTo(200,120)  //Rope
+        // ctx.lineTo(200, 65)
+        
+           
+  
+
 
 drawBoard()
+canvasHead()
 
 letterContainer.forEach(letterStyle => {
     letterStyle.style.backgroundColor ='blue'
@@ -125,10 +100,14 @@ const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
 const numberLettersPicked = []
 let wordSelected = []
 let answerWord = []
-let correctGuess = 0;
+let correctLetters = 0;
+let incorrectLetter = 0;
 let incorrectGuess = 0;
+let guess = false
 const ul1 = document.querySelector("#ul1")
 const underlinedText = document.querySelector('#underlinelist')
+const gameStatus = document.querySelector('.gameStatus')
+
 // let blankSpaces = ""
 easyButton.addEventListener('click',easyWord)
 function easyWord() {
@@ -144,24 +123,7 @@ function easyWord() {
             underlinedText.appendChild(letter)
             //console.log(underlinedText)
             underlinedTextList = document.querySelector('.underlineletters-container .underline li')
-            // for(var i=0;i < underlinedTextList.length; i++) {
-            //     var arrValue = underlinedTextList[i].innerHTML;
-            //     //alert(arrValue);
-            //     answerWord.push(arrValue);
-            // }
-            //console.log(underlinedTextList)
-            //console.log(letterContainer.innerHTML)
-            //underlinedTextList = document
-            //.querySelectorAll(".underlineletterslist div")
-        
-        // if (x === " " || x === "/'") {
-        //   blankSpaces += x;
-        // } else {
-        //   blankSpaces += "_";
-        // }
-        // }
-        // document.getElementById("blankSpaces").innerHTML = blankSpaces;
-        // underlinedText.insertAdjacentHTML('beforeend', x);
+
       }
       //console.log(underlinedTextList.innerHTML)
       //wordSelected = randomEasyWord
@@ -173,8 +135,8 @@ function easyWord() {
     //   wordSelected[i] = '_'
     //}
     //console.log(wordSelected)
-    //console.log(randomEasyWord)
-    console.log(wordSelected)
+    console.log(randomEasyWord)
+    //console.log(wordSelected)
 }
 hardButton.addEventListener('click', () => {
     console.log('Hard Button')
@@ -201,6 +163,21 @@ letterContainer.forEach(letter => {
 
 
 });
+function checkGameStatus(){
+    if (correctLetters === wordSelected.length){
+        gameStatus.innerText = 'You Win'
+        letterContainer.forEach(remove => {
+            remove.removeEventListener('click', checkForLetter)
+        })
+    } else if (incorrectGuess === 7){
+        gameStatus.innerText = 'You Lose, Please Try Again'
+        letterContainer.forEach(remove => {
+            remove.removeEventListener('click', checkForLetter)
+    })
+
+
+    }
+}
 
 function checkForLetter() {
     underLineList = document.getElementById('underlinelist')
@@ -211,17 +188,52 @@ function checkForLetter() {
         this.style.border = ""
         this.style.color = 'white'
     })
+    
         for (j = 0; j < listItems.length; j++) {
            listLetters = listItems[j].innerText
-           console.log(listLetters)
-           console.log(this.innerText)
+           //console.log(listLetters)
+           //console.log(this.innerText)
            if (this.innerText === listLetters){
                 listItems[j].style.color = 'black';
-                correctGuess++
-           } else {
-               incorrectGuess++
+                correctLetters++ 
+                guess = true    
+               
            }
-           console.log(incorrectGuess)    
+           //console.log(correctLetters)
+           //console.log(guess)
+           
+        //console.log(incorrectLetter)
+    }
+    if (guess !== true) {
+        incorrectGuess++
+    }
+    guess = false
+    
+    console.log(incorrectGuess)
+    checkGameStatus()
+}
+
+}
+    
+// function guess (){
+//     if ()
+// }
+    
+        
+
+        // console.log(correctGuess)
+        // console.log(incorrectGuess)
+
+    
+                   
+               
+                
+           //} if (this.innerText !== listLetters){
+                //incorrectGuess++
+               
+        
+          
+       
     // function checkGameStatus
     //     if (incorrectGuess === 6){
     //                alert('You Lose, Please try again')
@@ -237,7 +249,7 @@ function checkForLetter() {
             //   li[i].style.display = "none";
             // }
         //   }
-        }
+       
     
 
 
@@ -254,7 +266,7 @@ function checkForLetter() {
     //console.log(listItems)
     //console.log(listItems.length)
 
-}
+
     //console.log(ul)
         //console.log(underlinedTextList.length)
         //console.log(li)
