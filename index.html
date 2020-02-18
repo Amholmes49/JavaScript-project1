@@ -9,19 +9,18 @@
 <body>
     <h1>LETS PLAY HANGMAN!!!</h1>
     <div class="canvasOverlay">
-        <canvas id='hangmanCanvas' width='400' height='500' style="border: 2px 
+        <canvas id='hangmanCanvas' width='325' height='400' style="border: 3px 
         solid black;"></canvas>   
     </div>
+    <br>
     <div class="gameStatus"></div>
-    <br>
-    <br>
+    
         <div class="underlineletters-container">
             <ul id="underlinelist">
                 
             </ul>
                 
         </div>
-        <br>
         <div class="letter-container">
             <div class="letter A">A</div> 
             <div class="letter B">B</div> 
@@ -51,11 +50,13 @@
             <div class="letter Z">Z</div>
               
     </div>
-    <div class="difficulty">Difficulty level
+    <div class="difficultyContainer">
+        <div class="difficulty">Difficulty Level</div>
         <button class="level easybutton">Easy</button>
         <button class="level hardbutton">Hard</button>
         <button class="level phrasesbutton">Phrases</button> 
-    </div>  
+    </div>
+      
     <button id="reset">Reset Game</button> 
     <script src="./script.js"></script>
 </body>

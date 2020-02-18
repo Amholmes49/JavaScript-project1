@@ -6,10 +6,10 @@ const hardButton = document.querySelector(".hardbutton")
 const phrasesButton = document.querySelector(".phrasesbutton")
 const underlineContainer = document.querySelector(".underlineletters-container")
 const letterContainer = document.querySelectorAll(".letter-container div")
-console.log(underlineContainer)
+const lettersList = document.querySelector(".letter")
+const ctx = hangmanCanvas.getContext('2d')
 function drawBoard() {
     if (hangmanCanvas.getContext) {
-        var ctx = hangmanCanvas.getContext('2d');
         ctx.beginPath();
         ctx.moveTo(75, 50);
         ctx.lineTo(100, 75);
@@ -48,6 +48,18 @@ function drawBoard() {
         
         ctx.stroke();
     }
+    
+}
+function createLetters() {
+letterContainer.forEach(letterStyle => {
+    letterStyle.style.backgroundColor ='black'
+    letterStyle.style.border = '2px solid black'
+    letterStyle.style.padding = '12px'
+    letterStyle.style.width = '8px'
+    letterStyle.style.margin = '4px'
+    letterStyle.style.color = 'silver'
+    letterStyle.style.borderRadius = '8px'
+})
 }
 function Head(){ 
         if (hangmanCanvas.getContext) {
@@ -62,6 +74,7 @@ function Head(){
         ctx.arc(215, 140, 3, 0, Math.PI * 2, true);  // Right eye
         ctx.stroke();
     } 
+
 }
 function rightArm() {
     if (hangmanCanvas.getContext) {
@@ -119,20 +132,13 @@ function rope() {
 }                          
         
            
-  
 
 
 drawBoard()
-// canvasHead()
-// rightArm()
+createLetters()
 
-letterContainer.forEach(letterStyle => {
-    letterStyle.style.backgroundColor ='blue'
-    letterStyle.style.border = '2px solid black'
-    letterStyle.style.padding = '12px'
-    letterStyle.style.width = '8px'
-    letterStyle.style.margin = '4px'
-})
+//function createLetters()
+
 const hardWordList = ['triangle', 'observation', 'circumstance', 'sensitive', 'laundry', 'wording', 'fabricate', 'charter', 'sentiment', 'exclusive', 'parachute', 'mixture','restaurant','violation','straighten','temporary','horoscope','transform','president','destruction']
 const easyWordList = ['route','cower','final','ditch','trunk','orbit','yearn','self','swop','doubt','lake','feign','pest','aware','bet','blade','cabin','lease','wagon','work','swim']
 const phraseList = ['Quick and Dirty','In a Pickle',"Man of Few Words","A Chip on Your Shoulder",'I Smell a Rat',"Tough It Out",'Ugly Duckling',"Fool's Gold"]
@@ -147,38 +153,44 @@ let incorrectLetter = 0;
 let incorrectGuess = 0;
 let guess = false
 let blankSpecialChar = 0
-//let specialChar = 0
-const ul1 = document.querySelector("#ul1")
-const underlinedText = document.querySelector('#underlinelist')
-const gameStatus = document.querySelector('.gameStatus')
 
+const underlinedText = document.getElementById('underlinelist')
+const gameStatus = document.querySelector('.gameStatus')
+let ulItems = underlinedText.getElementsByTagName('li')
+console.log(ulItems)
 // let blankSpaces = ""
 easyButton.addEventListener('click',easyWord)
+
 function easyWord() {
+    resetBoard()
+    // console.log(ulItems)
+    // console.log(incorrectGuess)
+    // console.log(correctLetters)
     let randomEasyWord = easyWordList[Math.floor(Math.random() * easyWordList.length)]
     wordSelected = randomEasyWord.split("");
+    //console.log(ulItems)
+    //underlinedText.removeChild(underlinedText.childNodes[0])
     
         for (i = 0; i < wordSelected.length; i++) {
-            console.log(wordSelected.length)
+            //console.log(wordSelected.length)
             letter = document.createElement('li')
             letter.setAttribute('class', 'underline')
             letter.innerHTML = wordSelected[i].toUpperCase()
             underlinedText.appendChild(letter)
             
-            //console.log(underlinedText)
-            //underlinedTextList = document.querySelector('.underlineletters-container .underline li')
+            
 
       }
-      //console.log(underlinedTextList.innerHTML)
-      //wordSelected = randomEasyWord
-      //document.getElementById("underline").innerHTML = blankSpaces;
+      
+    activateLetters()
     
+      console.log(wordSelected)
 
     
-    console.log(randomEasyWord)
-    //console.log(wordSelected)
+    
 }
 hardButton.addEventListener('click', () => {
+    resetBoard()
     //console.log('Hard Button')
     let randomHardWord = hardWordList[Math.floor(Math.random() * hardWordList.length)]
     wordSelected = randomHardWord.split("");
@@ -188,15 +200,13 @@ hardButton.addEventListener('click', () => {
         letter.setAttribute('class', 'underline')
         letter.innerHTML = wordSelected[i].toUpperCase()
         underlinedText.appendChild(letter)
-        //console.log(underlinedText)
-        //underlinedTextList = document.querySelector('.underlineletters-container .underline li')
-
-  }
-    console.log(randomHardWord)
+    }
+    activateLetters()
     
     console.log(wordSelected)
 })
 phrasesButton.addEventListener('click', () => {
+    resetBoard()
     //console.log('Phrase Button')
      let randomPhrase = phraseList[Math.floor(Math.random() * phraseList.length)]
      wordSelected = randomPhrase.split("");
@@ -213,23 +223,18 @@ phrasesButton.addEventListener('click', () => {
             blankSpecialChar++ 
             letter.style.color = 'black'   
         }
-        
-        //console.log(underlinedText)
-        //underlinedTextList = document.querySelector('.underlineletters-container .underline li')
+        activateLetters()
 
   }
-    console.log(letter[i]) 
-    console.log(randomPhrase)
-     console.log(blankSpecialChar)
-     console.log(wordSelected)
+   console.log(wordSelected)
+    
 })
+function activateLetters(){
 letterContainer.forEach(letter => {
      letter.addEventListener('click', checkForLetter)
+})
+}
 
-//let randomEasyWord = easyWordList[Math.floor(Math.random() * easyWordList.////length)]
-
-
-});
 function checkGameStatus(){
     if (correctLetters === wordSelected.length - blankSpecialChar){
         gameStatus.innerText = 'You Win'
@@ -251,9 +256,9 @@ function checkForLetter() {
     listItems = underLineList.getElementsByTagName('li')
     //console.log(listItems.length)
     letterContainer.forEach(letterSelected => {
-        this.style.backgroundColor = 'white'
+        this.style.backgroundColor = 'red'
         this.style.border = ""
-        this.style.color = 'white'
+        this.style.color = 'red'
     })
     
         for (j = 0; j < listItems.length; j++) {
@@ -266,15 +271,20 @@ function checkForLetter() {
                 guess = true    
                
            }
-           //console.log(correctLetters)
-           //console.log(guess)
-           
-        //console.log(incorrectLetter)
+          
     }
     if (guess !== true) {
         incorrectGuess++
     }
     guess = false
+    drawHangman()
+    checkGameStatus()
+}
+function drawHangman() {   
+    
+    if (incorrectGuess === 0){
+        drawBoard()
+    }
     if (incorrectGuess === 1){
         rope()
     }
@@ -297,14 +307,33 @@ function checkForLetter() {
         leftLeg()
     }
     console.log(incorrectGuess)
-    checkGameStatus()
+    
 }
-
 const resetButton = document.querySelector("#reset")
-resetButton.addEventListener('click', resetBoard)
+resetButton.addEventListener('click', restartGame)
  
+function restartGame() {
+   resetBoard()
+   gameStatus.innerText = 'Select A Difficulty Level' 
+}
 function resetBoard() {
-    location.reload()
+    while (ulItems.length > 0) {
+        ulItems[0].remove()   
+      }
+    ctx.clearRect(0,0,400,500)
+    correctLetters = 0
+    incorrectGuess = 0
+    blankSpecialChar = 0
+    gameStatus.innerText = 'Pick a Letter'
+    letterContainer.forEach(remove => {
+        remove.removeEventListener('click', checkForLetter)
+    })
+    createLetters()
+    drawBoard()
+    console.log(correctLetters)
+    console.log(incorrectGuess)
+    
+    //location.reload()
 }
     
 
