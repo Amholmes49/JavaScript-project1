@@ -7,6 +7,10 @@ const phrasesButton = document.querySelector(".phrasesbutton")
 const underlineContainer = document.querySelector(".underlineletters-container")
 const letterContainer = document.querySelectorAll(".letter-container div")
 const lettersList = document.querySelector(".letter")
+let gamesWon = 0
+let gamesLost = 0
+let gamesWonNumber = document.querySelector('#gamesWonNumber')
+let gamesLostNumber = document.querySelector('#gamesLostNumber')
 const ctx = hangmanCanvas.getContext('2d')
 function drawBoard() {
     if (hangmanCanvas.getContext) {
@@ -133,7 +137,7 @@ function rope() {
         
            
 
-
+updateGamesTotals()
 drawBoard()
 createLetters()
 
@@ -157,8 +161,14 @@ let blankSpecialChar = 0
 const underlinedText = document.getElementById('underlinelist')
 const gameStatus = document.querySelector('.gameStatus')
 let ulItems = underlinedText.getElementsByTagName('li')
+
+function updateGamesTotals() {
+gamesWonNumber.innerText = gamesWon
+gamesLostNumber.innerText = gamesLost
+}
 console.log(ulItems)
 // let blankSpaces = ""
+
 easyButton.addEventListener('click',easyWord)
 
 function easyWord() {
@@ -169,6 +179,7 @@ function easyWord() {
     let randomEasyWord = easyWordList[Math.floor(Math.random() * easyWordList.length)]
     wordSelected = randomEasyWord.split("");
     //console.log(ulItems)
+    console.log(wordSelected)
     //underlinedText.removeChild(underlinedText.childNodes[0])
     
         for (i = 0; i < wordSelected.length; i++) {
@@ -241,14 +252,16 @@ function checkGameStatus(){
         letterContainer.forEach(remove => {
             remove.removeEventListener('click', checkForLetter)
         })
+        gamesWon++
+        
     } else if (incorrectGuess === 7){
         gameStatus.innerText = 'You Lose, Please Try Again'
         letterContainer.forEach(remove => {
             remove.removeEventListener('click', checkForLetter)
-    })
-
-
+        })
+        gamesLost++
     }
+    updateGamesTotals()
 }
 
 function checkForLetter() {
@@ -306,7 +319,7 @@ function drawHangman() {
     if (incorrectGuess === 7){
         leftLeg()
     }
-    console.log(incorrectGuess)
+    //console.log(incorrectGuess)
     
 }
 const resetButton = document.querySelector("#reset")

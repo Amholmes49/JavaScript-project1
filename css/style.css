@@ -25,8 +25,47 @@ body{
 
 }
 .canvasOverlay {
-    background-color: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 400px;
 }
+#hangmanCanvas {
+    grid-row: 1;
+    grid-column: 2;
+    background-color: white;
+    
+}
+.gameTotalsContainer{
+    grid-row: 1;
+    grid-column: 3;
+    display: grid;
+    grid-template-rows: repeat(4, 100px);
+    grid-template-columns: 1fr 1fr;
+}
+#gamesWonText {
+    grid-row: 2;
+    grid-column: 1; 
+    justify-self: center;
+    font-size: 20px;
+} 
+#gamesLostText {
+    grid-row: 2;
+    grid-column: 2; 
+    justify-self: center;
+    font-size: 20px;
+} 
+#gamesWonNumber {
+    grid-row: 3;
+    grid-column: 1; 
+    justify-self: center;
+    font-size: 20px;
+} 
+#gamesLostNumber {
+    grid-row: 3;
+    grid-column: 2; 
+    justify-self: center;
+    font-size: 20px;
+} 
 .underline {
     display: inline-block;
     list-style: none;
