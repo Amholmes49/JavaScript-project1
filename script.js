@@ -270,7 +270,12 @@ function checkForLetter() {
     checkGameStatus()
 }
 
-
+const resetButton = document.querySelector("#reset")
+resetButton.addEventListener('click', resetBoard)
+ 
+function resetBoard() {
+    location.reload()
+}
     
 
 
