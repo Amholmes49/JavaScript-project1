@@ -324,7 +324,9 @@ function drawHangman() {
 }
 const resetButton = document.querySelector("#reset")
 resetButton.addEventListener('click', restartGame)
- 
+
+
+
 function restartGame() {
    resetBoard()
    gameStatus.innerText = 'Select A Difficulty Level' 
