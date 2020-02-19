@@ -254,6 +254,35 @@ function checkGameStatus(){
             remove.removeEventListener('click', checkForLetter)
         })
         gamesWon++
+        var end = Date.now() + (2 * 1000);
+
+        // go Buckeyes!
+        var colors = ['#bb0000', '#ffffff'];
+
+        (function frame() {
+            confetti({
+                particleCount: 10,
+                angle: 120,
+                spread: 55,
+                origin: {
+                    x: 0
+                },
+                colors: colors
+            });
+            confetti({
+                particleCount: 10,
+                angle: 120,
+                spread: 55,
+                origin: {
+                    x: 1
+                },
+                colors: colors
+            });
+
+            if (Date.now() < end) {
+                requestAnimationFrame(frame);
+            }
+        }());
         
     } else if (incorrectGuess === 7){
         gameStatus.innerText = 'You Lose, Please Try Again'
