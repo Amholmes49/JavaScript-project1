@@ -262,7 +262,7 @@ function checkGameStatus(){
         (function frame() {
             confetti({
                 particleCount: 10,
-                angle: 120,
+                angle: 60,
                 spread: 55,
                 origin: {
                     x: 0
