@@ -116,3 +116,14 @@ body{
     grid-column: 3;
     border-radius: 8px;
 } 
+#resetCounter {
+    grid-row: 4;
+    grid-column: 1 / span 2;
+    justify-self: center;
+    width: 100px;
+    height: 25px;
+    border-radius: 8px;
+    background-color: black;
+    color: silver;
+
+}

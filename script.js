@@ -11,6 +11,7 @@ let gamesWon = 0
 let gamesLost = 0
 let gamesWonNumber = document.querySelector('#gamesWonNumber')
 let gamesLostNumber = document.querySelector('#gamesLostNumber')
+let resetCounter = document.querySelector("#resetCounter") 
 const ctx = hangmanCanvas.getContext('2d')
 function drawBoard() {
     if (hangmanCanvas.getContext) {
@@ -324,7 +325,12 @@ function drawHangman() {
 }
 const resetButton = document.querySelector("#reset")
 resetButton.addEventListener('click', restartGame)
-
+resetCounter.addEventListener("click", resetGameCounter )
+function resetGameCounter(){
+    gamesWon = 0
+    gamesLost = 0
+    updateGamesTotals()
+}
 
 
 function restartGame() {
