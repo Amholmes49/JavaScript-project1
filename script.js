@@ -142,7 +142,7 @@ updateGamesTotals()
 drawBoard()
 createLetters()
 
-//function createLetters()
+
 
 const hardWordList = ['triangle', 'observation', 'circumstance', 'sensitive', 'laundry', 'wording', 'fabricate', 'charter', 'sentiment', 'exclusive', 'parachute', 'mixture','restaurant','violation','straighten','temporary','horoscope','transform','president','destruction']
 const easyWordList = ['route','cower','final','ditch','trunk','orbit','yearn','self','swop','doubt','lake','feign','pest','aware','bet','blade','cabin','lease','wagon','work','swim']
